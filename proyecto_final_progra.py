@@ -115,7 +115,29 @@ def pais_menor_ventas_titulo_vg(ventas, lista_videojuegos, lista_paises):
                 print(f"{lista_paises[c]} - {menor} unidades")
 
 def mostrar_ranking_vg(ventas, lista_videojuegos):
-    pass
+    totales = calcular_totales_vg(ventas)
+    nombres = []
+    
+    for i in range(len(lista_videojuegos)):
+        nombres.append(lista_videojuegos[i])
+    
+    for i in range(len(totales) - 1):
+        for j in range(len(totales) - 1 - i):
+            if totales[j] < totales [j + 1]:
+                auxiliar = totales[j]
+                totales[j] = totales[j + 1]
+                totales[j + 1] = auxiliar
+                
+                auxiliar = nombres[j]
+                nombres[j] = nombres[j + 1]
+                nombres[j + 1] = auxiliar
+                
+    print("\n=== RANKING DE VIDEOJUEGOS ===")
+    print("Método utilizado: ORDENAMIENTO BURBUJA")
+    print()
+    
+    for i in range(len(totales)):
+        print(f"{i + 1}. {nombres[i]} - {totales} unidades")
 
 def buscar_titulo_vg(nombre, lista_videojuegos):
     pass
@@ -127,10 +149,18 @@ def intercambiar_ventas_vg(ventas, lista_videojuegos, lista_paises):
     pass
 
 def acumulado_recursivo_vg(fila, posicion):
-    pass
+    if posicion == len(fila):
+        return 0
+    
+    return fila[posicion] + acumulado_recursivo_vg(fila, posicion + 1)
 
 def reporte_recursivo_vg(ventas, lista_videojuegos):
-    pass
+    print("\n=== REPORTE RECURSIVO DE VENTAS ===")
+    
+    for i in range(len(ventas)):
+        total = acumulado_recursivo_vg(ventas[i], 0)
+        
+        print(f"{lista_videojuegos[i]} - {total} unidades")
 
 def mostrar_menu_vg ():
     print("========================================")
