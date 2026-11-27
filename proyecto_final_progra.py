@@ -103,4 +103,5 @@ def main():
     print(" ")
 
     mostrar_ventas(ventas, lista_videojuegos, lista_paises)
+    tamara
 main()
