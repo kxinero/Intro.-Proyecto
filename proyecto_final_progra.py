@@ -4,12 +4,10 @@ max_videojuegos = 60
 max_paises = 12
 VERSION_SISTEMA = "VG-26.2"
 
-def cantidad_min_max_vg(videojuegos):
+def cantidad_min_max_vg(videojuegos, paises):
     while videojuegos <= 0 or videojuegos > max_videojuegos:
         print("Cantidad incorrecta, intenta nuevamente.")
         videojuegos = int(input("Ingrese la cantidad de videojuegos: "))
-
-    paises = int(input("Ingrese la cantidad de paises: "))
 
     while paises <= 0 or paises > max_paises:
         print("Cantidad incorrecta, intenta nuevamente.")
@@ -137,7 +135,7 @@ def mostrar_ranking_vg(ventas, lista_videojuegos):
     print()
     
     for i in range(len(totales)):
-        print(f"{i + 1}. {nombres[i]} - {totales} unidades")
+        print(f"{i + 1}. {nombres[i]} - {totales[i]} unidades")
 
 def buscar_titulo_vg(nombre, lista_videojuegos):
     pass
@@ -190,8 +188,9 @@ def main_vg():
     
     print(f"Videojuegos: {max_videojuegos}")
     print(f"Países: {max_paises}")
-
+    
     videojuegos = int(input("Ingrese la cantidad de videojuegos: "))
+    paises = int(input("Ingrese la cantidad de paises: "))
     
     videojuegos, paises = cantidad_min_max_vg(videojuegos)
     
@@ -231,7 +230,7 @@ def main_vg():
             pais_menor_ventas_titulo_vg(ventas, lista_videojuegos, lista_paises)
             
         elif opcion == 5: 
-            mostrar_ranking_vg(ventas, lista_videojuegos, lista_paises)
+            mostrar_ranking_vg(ventas, lista_videojuegos)
         
         elif opcion == 6:
             consultar_ventas_vg(ventas, lista_videojuegos, lista_paises)
@@ -241,6 +240,9 @@ def main_vg():
         
         elif opcion == 8:
             reporte_recursivo_vg(ventas, lista_videojuegos)
+        
+        elif opcion == 9:
+            print("SE CERRÓ EL PROGRAMA CORRECTAMENTE")
         
         else:
             print("Opción incorrecta. Seleccione entre 1 y 9")
