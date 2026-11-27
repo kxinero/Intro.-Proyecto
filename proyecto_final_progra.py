@@ -4,7 +4,7 @@ max_videojuegos = 60
 max_paises = 12
 VERSION_SISTEMA = "VG-26.2"
 
-def cantidad_min_max_vg(videojuegos, paises):
+def cantidad_min_max(videojuegos, paises):
     while videojuegos <= 0 or videojuegos > max_videojuegos:
         print("Cantidad incorrecta, intenta nuevamente.")
         videojuegos = int(input("Ingrese la cantidad de videojuegos: "))
@@ -14,7 +14,7 @@ def cantidad_min_max_vg(videojuegos, paises):
         paises = int(input("Ingrese la cantidad de paises: "))
     return videojuegos, paises
 
-def crear_videojuegos_vg(videojuegos):
+def crear_videojuegos(videojuegos):
 
     lista_videojuegos = []
     for i in range(videojuegos):
@@ -30,7 +30,7 @@ def crear_paises_vg(paises):
         
     return lista_paises
 
-def generar_ventas_vg(videojuegos, paises):
+def generar_ventas(videojuegos, paises):
     ventas = []
     
     for f in range(videojuegos):
@@ -41,7 +41,7 @@ def generar_ventas_vg(videojuegos, paises):
         
     return ventas
 
-def mostrar_ventas_vg(ventas, lista_videojuegos, lista_paises):
+def mostrar_ventas(ventas, lista_videojuegos, lista_paises):
     ancho = 15
     
     print("================ MATRIZ DE VENTAS ================")
@@ -60,7 +60,7 @@ def mostrar_ventas_vg(ventas, lista_videojuegos, lista_paises):
             print(str(ventas[f][c]).center(ancho), end=" ")
         print()
     
-def calcular_totales_vg(ventas):
+def calcular_totales(ventas):
     totales = []
     
     for f in range(len(ventas)):
@@ -71,8 +71,8 @@ def calcular_totales_vg(ventas):
     
     return totales
 
-def titulo_mas_vendido_total_vg (ventas, lista_videojuegos):
-    totales = calcular_totales_vg(ventas)
+def titulo_mas_vendido_total (ventas, lista_videojuegos):
+    totales = calcular_totales(ventas)
     mayor = totales[0]
     for i in range (1,len(totales)):
         if totales [i] > mayor:
@@ -84,7 +84,7 @@ def titulo_mas_vendido_total_vg (ventas, lista_videojuegos):
         if totales[i] == mayor:
             print(f"{lista_videojuegos[i]} - {mayor} unidades")
 
-def titulo_mas_vendido_por_pais_vg(ventas, lista_videojuegos, lista_paises):
+def titulo_mas_vendido_por_pais(ventas, lista_videojuegos, lista_paises):
     print("\n=== TÍTULO MÁS VENDIDO POR PAÍS ===")
     for c in range(len(lista_paises)):
         mayor = ventas[0][c]
@@ -98,7 +98,7 @@ def titulo_mas_vendido_por_pais_vg(ventas, lista_videojuegos, lista_paises):
             if ventas [f][c] == mayor:
                 print(f"{lista_videojuegos[f]} - {mayor} unidades")
 
-def pais_menor_ventas_titulo_vg(ventas, lista_videojuegos, lista_paises):
+def pais_menor_ventas_titulo(ventas, lista_videojuegos, lista_paises):
     print("\n=== PAÍS CON MENOS VENTAS POR TÍTULO ===")
     
     for f in range(len(ventas)):
@@ -112,8 +112,8 @@ def pais_menor_ventas_titulo_vg(ventas, lista_videojuegos, lista_paises):
             if ventas[f][c] == menor:
                 print(f"{lista_paises[c]} - {menor} unidades")
 
-def mostrar_ranking_vg(ventas, lista_videojuegos):
-    totales = calcular_totales_vg(ventas)
+def mostrar_ranking(ventas, lista_videojuegos):
+    totales = calcular_totales(ventas)
     nombres = []
     
     for i in range(len(lista_videojuegos)):
@@ -137,30 +137,30 @@ def mostrar_ranking_vg(ventas, lista_videojuegos):
     for i in range(len(totales)):
         print(f"{i + 1}. {nombres[i]} - {totales[i]} unidades")
 
-def buscar_titulo_vg(nombre, lista_videojuegos):
+def buscar_titulo(nombre, lista_videojuegos):
     pass
 
-def consultar_ventas_vg(ventas, lista_videojuegos, lista_paises):
+def consultar_ventas(ventas, lista_videojuegos, lista_paises):
     pass
 
-def intercambiar_ventas_vg(ventas, lista_videojuegos, lista_paises):
+def intercambiar_ventas(ventas, lista_videojuegos, lista_paises):
     pass
 
-def acumulado_recursivo_vg(fila, posicion):
+def acumulado_recursivo(fila, posicion):
     if posicion == len(fila):
         return 0
     
-    return fila[posicion] + acumulado_recursivo_vg(fila, posicion + 1)
+    return fila[posicion] + acumulado_recursivo(fila, posicion + 1)
 
-def reporte_recursivo_vg(ventas, lista_videojuegos):
+def reporte_recursivo(ventas, lista_videojuegos):
     print("\n=== REPORTE RECURSIVO DE VENTAS ===")
     
     for i in range(len(ventas)):
-        total = acumulado_recursivo_vg(ventas[i], 0)
+        total = acumulado_recursivo(ventas[i], 0)
         
         print(f"{lista_videojuegos[i]} - {total} unidades")
 
-def mostrar_menu_vg ():
+def mostrar_menu ():
     print("========================================")
     print("     SISTEMA DE MONITOREO DE VENTAS     ")
     print("========================================")
@@ -182,7 +182,7 @@ def mostrar_menu_vg ():
     
     return opcion
 
-def main_vg():
+def main():
     print("----------------------------------------")
     print("      CAPACIDAD MÁXIMA DEL SISTEMA      ")
     
@@ -192,17 +192,17 @@ def main_vg():
     videojuegos = int(input("Ingrese la cantidad de videojuegos: "))
     paises = int(input("Ingrese la cantidad de paises: "))
     
-    videojuegos, paises = cantidad_min_max_vg(videojuegos)
+    videojuegos, paises = cantidad_min_max(videojuegos)
     
     print("\nConfiguración completada.")
     print(f"Videojuegos registrados: {videojuegos}")
     print(f"Países registrados: {paises}")
     
-    lista_videojuegos = crear_videojuegos_vg(videojuegos)
+    lista_videojuegos = crear_videojuegos(videojuegos)
 
     lista_paises = crear_paises_vg(paises)
 
-    ventas = generar_ventas_vg(videojuegos, paises)
+    ventas = generar_ventas(videojuegos, paises)
     
     print("\nVIDEOJUEGOS REGISTRADOS:")
     print(lista_videojuegos)
@@ -215,31 +215,31 @@ def main_vg():
     opcion = 0
     
     while opcion != 9:
-        opcion = mostrar_menu_vg()
+        opcion = mostrar_menu()
         
         if opcion == 1:
-            mostrar_ventas_vg(ventas, lista_videojuegos, lista_paises)
+            mostrar_ventas(ventas, lista_videojuegos, lista_paises)
             
         elif opcion == 2:
-            titulo_mas_vendido_total_vg(ventas, lista_videojuegos)
+            titulo_mas_vendido_total(ventas, lista_videojuegos)
         
         elif opcion == 3:
-            titulo_mas_vendido_por_pais_vg(ventas, lista_videojuegos, lista_paises)
+            titulo_mas_vendido_por_pais(ventas, lista_videojuegos, lista_paises)
         
         elif opcion == 4: 
-            pais_menor_ventas_titulo_vg(ventas, lista_videojuegos, lista_paises)
+            pais_menor_ventas_titulo(ventas, lista_videojuegos, lista_paises)
             
         elif opcion == 5: 
-            mostrar_ranking_vg(ventas, lista_videojuegos)
+            mostrar_ranking(ventas, lista_videojuegos)
         
         elif opcion == 6:
-            consultar_ventas_vg(ventas, lista_videojuegos, lista_paises)
+            consultar_ventas(ventas, lista_videojuegos, lista_paises)
     
         elif opcion == 7: 
-            intercambiar_ventas_vg(ventas, lista_videojuegos, lista_paises)
+            intercambiar_ventas(ventas, lista_videojuegos, lista_paises)
         
         elif opcion == 8:
-            reporte_recursivo_vg(ventas, lista_videojuegos)
+            reporte_recursivo(ventas, lista_videojuegos)
         
         elif opcion == 9:
             print("SE CERRÓ EL PROGRAMA CORRECTAMENTE")
@@ -247,4 +247,4 @@ def main_vg():
         else:
             print("Opción incorrecta. Seleccione entre 1 y 9")
             
-main_vg()
+main()
